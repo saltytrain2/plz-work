@@ -1,0 +1,4 @@
+<launch>
+  <node pkg="mini_project" type="second.py" name="second" output="screen" />
+  <node pkg="joy" type="joy_node" name="joy" />
+</launch>
