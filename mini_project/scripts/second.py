@@ -1,31 +1,18 @@
 #!/usr/bin/env python
 
 import rospy
-from std_msgs.msg import String
 from sensor_msgs.msg import Joy
 
 def callback(data):
-    rospy.loginfo(Joy.axes[1], Joy.axes[4], data.data)
+    pub.publish(100 * data.axes[1])
+    pub.publish(100 * data.axes[4])
 
-def display():
+def start():
     rospy.init_node('display', anonymous = True)
     rospy.Subscriber("joy", Joy, callback)
+    global pub
+    pub = rospy.Publisher('output', Joy, queue_size = 10)
     rospy.spin()
 
 if __name__ == '__main__':
-    display()
-
-def output():
-    pub = rospy.Publisher('outputs', String, queue_size = 10)
-    rospy.init_node('output', anonymous = True)
-    rate = rospy.Rate(10)
-    while not rospy.is_shutdown():
-        rospy.loginfo(display())
-        pub.publish(display())
-        rate.sleep()
-
-if __name__ == '__main__':
-    try:
-        output()
-    except rospy.ROSInterruptException:
-        pass
+    start()
