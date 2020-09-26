@@ -11,7 +11,7 @@ def start():
     rospy.init_node('display', anonymous = True)
     rospy.Subscriber("joy", Joy, callback)
     rospy.spin()
-    rospy.Publisher('output', Joy, queue_size = 10)
+    pub = rospy.Publisher('output', Joy, queue_size = 10)
     while not rospy.is_shutdown():
         pub.publish(100 * data.axes[1])
         pub.publish(100 * data.axes[4])
