@@ -1,10 +1,10 @@
 <launch>
 
-  <node pkg="mini_project" type="second.py" name="second" output="screen"/>
-    <node name="display" pkg="mini_project" type="second.py" args="--test" respawn="true" output="screen"/>
-  <node pkg="joy" type="joy_node" name="joy" >
-    <param name="dev" type="string" value="/dev/input/js2" />
-    <param name="deadzone" type="double" value="0.00" />
+  <node pkg="mini_project" type="second.py" name="second" />
+  <node name="display" pkg="mini_project" type="second.py" args="--test" respawn="true" output="screen"/>
+  <node pkg="joy" type="joy_node" name="joy" respawn="true" >
+    <param name="dev" type="string" value="/dev/input/js0" />
+    <param name="deadzone" type="double" value="0.05" />
   </node>
 
 </launch>

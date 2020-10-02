@@ -5,9 +5,8 @@ from sensor_msgs.msg import Joy
 from std_msgs.msg import String
 
 def callback(data):
-    rospy.loginfo(rospy.get_caller_id(), data.data)
-    rospy.publish(100 * data.axes[1])
-    rospy.publish(100 * data.axes[4])
+    rospy.loginfo("{} {}".format(100 * data.axes[1], 100 * data.axes[4]))
+    pub.publish(("{} {}".format(100 * data.axes[1], 100 * data.axes[4])))
 
 def start():
     rospy.init_node('display', anonymous = True)
